@@ -1,9 +1,9 @@
-// src/infrastructure/repositories/business.repository.ts
 import { Injectable } from '@nestjs/common';
-import { BusinessRepository } from 'src/domain/repositories/business.repository';
 import { Repository } from 'typeorm';
-import { Business } from '../entities/business.orm-entity';
 import { InjectRepository } from '@nestjs/typeorm';
+
+import { Business } from '../entities/business.orm-entity';
+import { BusinessRepository } from 'src/domain/repositories/business.repository';
 
 @Injectable()
 export class BusinessRepositoryImpl implements BusinessRepository {
@@ -16,8 +16,8 @@ export class BusinessRepositoryImpl implements BusinessRepository {
     await this.repository.save(business);
   }
 
-  create(name: string, email: string): void {
-    this.save(this.repository.create({ name, email }));
+  create(name: string, email: string): Business {
+    return this.repository.create({ name, email });
   }
 
   // Other methods...

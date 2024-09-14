@@ -1,8 +1,9 @@
 import { DataSource } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
-import { Business } from '../entities/business.orm-entity';
 import { join } from 'path';
+
+import { Business } from '../entities/business.orm-entity';
 
 config({ path: '.env.development' });
 
