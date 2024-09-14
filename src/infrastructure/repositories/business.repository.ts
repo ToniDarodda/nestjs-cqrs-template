@@ -16,9 +16,19 @@ export class BusinessRepositoryImpl implements BusinessRepository {
     await this.repository.save(business);
   }
 
+  async exist(name: string, email: string): Promise<boolean> {
+    const business = await this.repository
+      .createQueryBuilder('business')
+      .where('business.name = :name OR business.email = :email', {
+        name,
+        email,
+      })
+      .getOne();
+
+    return !!business;
+  }
+
   create(name: string, email: string): Business {
     return this.repository.create({ name, email });
   }
-
-  // Other methods...
 }

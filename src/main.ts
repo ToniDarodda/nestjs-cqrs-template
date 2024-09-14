@@ -2,7 +2,7 @@ import * as cookieParser from 'cookie-parser';
 
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { ValidationPipe, VersioningType } from '@nestjs/common';
+import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 import { AppModule } from './app.module';
@@ -43,6 +43,8 @@ async function bootstrap() {
     methods: ['GET', 'POST', 'PUT', 'UPDATE', 'PATCH', 'DELETE'],
     credentials: true,
   });
+
+  app.useLogger(Logger);
 
   app.use(cookieParser());
 
