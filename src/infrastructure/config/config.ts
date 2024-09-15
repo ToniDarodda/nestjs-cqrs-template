@@ -17,7 +17,7 @@ export const dataSourceOptions = {
   password: configService.getOrThrow<string>('PASSWORD'),
   database: configService.getOrThrow<string>('DATABASE'),
   entities: [Business],
-  migrations: [join(__dirname, '../database/migrations/*.ts')],
+  migrations: [join(__dirname, '../database/migrations/*.js')],
   synchronize: false,
 };
 

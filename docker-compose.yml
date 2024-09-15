@@ -1,0 +1,30 @@
+services:
+  backend:
+    build:
+      context: .
+    image: cqrs
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      - cqrs-network
+
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=cqrs
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5432:5432"
+    networks:
+      - cqrs-network
+
+networks:
+  cqrs-network:
+    driver: bridge
